@@ -27,7 +27,7 @@ pipeline{
                  echo $i
                  
                  "scp -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem hello-${BUILD_NUM}.war ec2-user@$i:/tmp"
-                 "ssh -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem ec2-user@$i \"sudo cp /tmp/hello-${BUILD_NUM}.war /var/lib/tomcat/webapps\""
+                 "ssh -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem ec2-user@$i "sudo cp /tmp/hello-${BUILD_NUM}.war /var/lib/tomcat/webapps"
                done
                  '''
             }

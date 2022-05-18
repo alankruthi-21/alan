@@ -1,27 +1,20 @@
 pipeline{
     agent any
    parameters {
-    string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'From which branch artifacts want to deploy?')
-    string(name: 'BUILD_NUM', defaultValue: '', description: 'From which build number artifacts want to deploy?')
-    string(name: 'SERVER_IP', defaultValue: '', description: 'To  which want to deploy?')
+    string(name: 'BRANCH_NAME', defaultValue: '', description: '')
+    string(name: 'BUILD_NUM', defaultValue: '', description: '')
+    string(name: 'SERVER_IP', defaultValue: '', description: '')
 
   }
     stages{
-        stage("download artifact"){
+       
+        stage("deploy to multiple servers") {
             steps {
-                println "Here I'm downloading artifacts from S3"
-                sh """
-                        
-                        aws s3 cp s3://alankruthiart/application2/${BUILD_NUM}/hello-${BUILD_NUM}.war .
- 
-                   """
+               
+                sh '''
+                aws s3 cp s3://alankruthiart/application2/${buildno}/hello-${buildno}.war .
                 
-            }
-        }
-        stage("copy artifacts") {
-            steps {
-                println "Here I'm coping artifact from Jenkins to Tomcat servers"
-                sh '''IFS=',' read -r -a ip  <<< "${Ip}"
+                IFS=',' read -r -a ip  <<< "${Ip}"
                  for i in \"${ip[@]}\"
                  do
                  echo $i

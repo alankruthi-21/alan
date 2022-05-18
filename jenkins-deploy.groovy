@@ -12,7 +12,7 @@ pipeline{
                 println "Here I'm downloading artifacts from S3"
                 sh """
                         
-                        aws s3 cp s3://alankruthiart/application1/${BUILD_NUM}/hello-${BUILD_NUM}.war .
+                        aws s3 cp s3://alankruthiart/application2/${BUILD_NUM}/hello-${BUILD_NUM}.war .
  
                    """
                 

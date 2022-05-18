@@ -12,7 +12,7 @@ pipeline{
             steps {
                
                 sh '''
-                aws s3 cp s3://alankruthiart/application2/${buildno}/hello-${buildno}.war .
+                aws s3 cp s3://alankruthiart/application2/${BUILD_NUM}/hello-${BUILD_NUM}.war .
                 
                 IFS=',' read -r -a ip  <<< "${Ip}"
                  for i in \"${ip[@]}\"

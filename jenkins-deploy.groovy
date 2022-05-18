@@ -14,13 +14,13 @@ pipeline{
                 sh '''
                 aws s3 cp s3://alankruthiart/application2/${BUILD_NUM}/hello-${BUILD_NUM}.war .
                 
-                IFS=',' read -r -a ip  <<< "${Ip}"
+                IFS=',' read -r -a ip  <<< "${SERVER_IP}"
                  for i in \"${ip[@]}\"
                  do
                  echo $i
                  
                  "scp -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem hello-${BUILD_NUM}.war ec2-user@$i:/tmp"
-                 "ssh -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem ec2-user@$i "sudo cp /tmp/hello-${BUILD_NUM}.war /var/lib/tomcat/webapps"
+                 "ssh -o StrictHostKeyChecking=no -i /tmp/alankruthi21.pem ec2-user@$i "sudo cp /tmp/hello-${BUILD_NUM}.war /var/lib/tomcat/webapps""
                done
                  '''
             }

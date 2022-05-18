@@ -21,8 +21,8 @@ pipeline{
         stage("copy artifacts") {
             steps {
                 println "Here I'm coping artifact from Jenkins to Tomcat servers"
-                sh '''IFS=',' read -r -a ip  <<< "$Ip"
-                 for i in ${ip[@]}
+                sh '''IFS=',' read -r -a ip  <<< "${Ip}"
+                 for i in \"${ip[@]}\"
                  do
                  echo $i
                  
